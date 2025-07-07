@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Docker Full Guide</title>
+  <link rel="stylesheet" href="D:\docker\style.css" />
+</head>
+<body>
+  <header>
+    <h1>🐳 Docker Guide for Beginners</h1>
+    <p>Understand, Pull Images, and Build Web Projects Using Docker</p>
+  </header>
+
+  <nav>
+    <ul>
+      <li><a href="#intro">Introduction</a></li>
+      <li><a href="#commands">Commands</a></li>
+      <li><a href="#webproject">Web in Docker</a></li>
+      <li><a href="#tips">Tips</a></li>
+    </ul>
+  </nav>
+
+  <main class="container">
+    <section id="intro">
+      <h2>📘 What is Docker?</h2>
+      <p>Docker is an open-source platform used to build, ship, and run applications in isolated environments called <strong>containers</strong>.</p>
+      <img src="https://www.docker.com/wp-content/uploads/2022/03/Moby-logo.png" alt="Docker Logo" class="docker-img">
+    </section>
+
+    <section id="commands">
+      <h2>🔧 Basic Docker Commands</h2>
+      <div class="code-block">
+<pre><code># Check Docker version
+docker --version
+
+# Pull nginx image
+docker pull nginx
+
+# Run container
+docker run -d -p 8080:80 nginx
+
+# List running containers
+docker ps
+
+# Stop container
+docker stop &lt;container_id&gt;
+
+# Remove container
+docker rm &lt;container_id&gt;</code></pre>
+      </div>
+    </section>
+
+    <section id="webproject">
+      <h2>🌐 Create a Website Using Docker</h2>
+      <p>Steps to run an HTML page inside a Docker container:</p>
+      <ol>
+        <li>Create your <code>index.html</code></li>
+        <li>Write a simple <code>Dockerfile</code>:</li>
+      </ol>
+      <div class="code-block">
+<pre><code>FROM nginx:alpine
+COPY index.html /usr/share/nginx/html/index.html</code></pre>
+      </div>
+      <p>Build and run:</p>
+      <div class="code-block">
+<pre><code>docker build -t my-webpage .
+docker run -d -p 8080:80 my-webpage</code></pre>
+      </div>
+    </section>
+
+    <section id="tips">
+      <h2>💡 Tips for Docker Usage</h2>
+      <ul>
+        <li>Always use lightweight images like <code>alpine</code> if possible</li>
+        <li>Tag images properly (e.g., <code>my-webpage:v1</code>)</li>
+        <li>Use <code>.dockerignore</code> to avoid copying unnecessary files</li>
+        <li>Use Docker Compose for multi-container setups</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer>
+    <p>🚀 Built with HTML & CSS | By Jaskaran Singh | <a href="#">Back to Top</a></p>
+  </footer>
+</body>
+</html>

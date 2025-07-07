@@ -1,0 +1,89 @@
+/* Reset and Base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(to right, #e0f7fa, #ffffff);
+  color: #333;
+  line-height: 1.6;
+  padding: 20px;
+}
+
+header {
+  background-color: #0db7ed;
+  color: white;
+  padding: 30px;
+  text-align: center;
+  border-radius: 10px;
+  box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+  margin-bottom: 30px;
+}
+
+nav ul {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  margin-bottom: 30px;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: #0db7ed;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+nav ul li a:hover {
+  color: #025f77;
+}
+
+.container {
+  max-width: 1000px;
+  margin: auto;
+  padding: 0 15px;
+}
+
+h2 {
+  color: #0db7ed;
+  margin-top: 30px;
+  margin-bottom: 15px;
+}
+
+.code-block {
+  background-color: #272822;
+  color: #f8f8f2;
+  padding: 20px;
+  border-radius: 8px;
+  overflow-x: auto;
+  font-family: monospace;
+  margin: 15px 0;
+}
+
+code {
+  color: #ffd369;
+}
+
+ol li, ul li {
+  margin-bottom: 10px;
+}
+
+.docker-img {
+  width: 200px;
+  display: block;
+  margin: 20px auto;
+}
+
+footer {
+  text-align: center;
+  margin-top: 50px;
+  font-size: 14px;
+  color: #555;
+  border-top: 1px solid #ccc;
+  padding-top: 20px;
+}
