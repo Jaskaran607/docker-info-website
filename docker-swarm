@@ -1,0 +1,87 @@
+
+# Initialize swarm
+docker swarm init
+
+# Check swarm nodes
+docker node ls
+
+# Deploy a service
+docker service create --name myweb --publish 8080:80 nginx
+
+# Check running services
+docker service ls
+
+# Scale the service
+docker service scale myweb=3
+
+# Remove the service
+docker service rm myweb
+2. Services
+# Create a new service
+docker service create --name webapp --publish 8080:80 nginx
+
+# List services
+docker service ls
+
+# Inspect a service
+docker service inspect webapp
+
+# Check tasks (containers) running under a service
+docker service ps webapp
+
+# Scale a service
+docker service scale webapp=5
+
+# Update a service (e.g., image version)
+docker service update --image nginx:latest webapp
+
+# Remove a service
+docker service rm webapp
+
+🔹 3. Stacks (multi-service apps with docker-compose.yml)
+# Deploy a stack from a compose file
+docker stack deploy -c docker-compose.yml mystack
+
+# List stacks
+docker stack ls
+
+# List services in a stack
+docker stack services mystack
+
+# List tasks in a stack
+docker stack ps mystack
+
+# Remove a stack
+docker stack rm mystack
+
+🔹 4. Overlay Networking
+# Create an overlay network
+docker network create -d overlay mynet
+
+# List networks
+docker network ls
+
+# Inspect a network
+docker network inspect mynet
+
+🔹 5. Visualizer (UI for Swarm)
+# Deploy Docker Visualizer (run on manager node)
+docker service create \
+  --name=viz \
+  --publish=8080:8080/tcp \
+  --constraint=node.role==manager \
+  --mount=type=bind,src=/var/run/docker.sock,dst=/var/run/docker.sock \
+  dockersamples/visualizer
+
+
+Then open http://<manager-ip>:8080 in browser.
+
+🔹 6. Labels (for scheduling)
+# Add a label to a node
+docker node update --label-add region=us-east <node_id>
+
+# Create a service constrained to a labeled node
+docker service create \
+  --name db \
+  --constraint 'node.labels.region == us-east' \
+  mysql:5.7
