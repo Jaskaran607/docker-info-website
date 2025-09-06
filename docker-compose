@@ -1,0 +1,47 @@
+#!/bin/bash
+# create-docker-compose-and-push.sh
+
+# Step 1: Create docker-compose.yml
+cat > docker-compose.yml <<EOL
+version: "3.9"
+
+services:
+  web:
+    image: nginx:latest
+    container_name: my-nginx
+    ports:
+      - "8080:80"
+    volumes:
+      - ./html:/usr/share/nginx/html
+
+  db:
+    image: mysql:8.0
+    container_name: my-mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: mydb
+      MYSQL_USER: user
+      MYSQL_PASSWORD: userpassword
+    ports:
+      - "3306:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+
+volumes:
+  db_data:
+EOL
+
+# Step 2: Initialize Git repository
+git init
+git branch -M main
+
+# Step 3: Add and commit
+git add docker-compose.yml
+git commit -m "Add docker-compose file with nginx + mysql"
+
+# Step 4: Add GitHub remote (replace with your repo URL)
+git remote add origin https://github.com/jaskaranleel13/docker-compose-setup.git
+
+# Step 5: Push to GitHub
+git push -u origin main
